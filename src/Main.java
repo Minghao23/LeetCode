@@ -187,6 +187,22 @@ public class Main {
         return -1;
     }
 
+    public int kEmptySlots(int[] flowers, int k) {
+        if(flowers == null || flowers.length < 2) {
+            return -1;
+        }
+        TreeSet<Integer> ts = new TreeSet<Integer>();
+        for(int i = 0; i < flowers.length; i++) {
+            ts.add(flowers[i]);
+            Integer lo = ts.lower(flowers[i]);
+            Integer hi = ts.higher(flowers[i]);
+            if((lo != null && (flowers[i] - lo - 1 == k)) || (hi != null && (hi - flowers[i] - 1 == k))) {
+                return i + 1;
+            }
+        }
+        return -1;
+    }
+
     public static void main(String[] args) {
         Main main = new Main();
 
